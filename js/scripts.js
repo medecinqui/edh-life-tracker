@@ -1,10 +1,4 @@
-/*
-players = new ListPlayers();
-andy = new Player("andy", 40)
-players.addPlayer(andy)
-players.findPlayer("andy").commanderDamage("noe", 20)
-console.log(players.findPlayer("andy"))
-*/
+
 let players;
 let consoleElement = document.getElementById("console");
 let logElement = document.getElementById("log");
@@ -32,11 +26,15 @@ updatePlayers = function(){
 	for(let player of players.playerObjects){
 		playerHTML.push(generatePlayerHTML(player));
 	}
-	containerElement.innerHTML = playerHTML.join();
+	containerElement.innerHTML = playerHTML.join("");
 }
 
 generatePlayerHTML = function(player){
-	return "<div class='player' id='" + player.name + "'>" 
+	let deadStr = ""
+	if(player.checkDead()){
+		deadStr = " dead";
+	}
+	return "<div class='player"+ deadStr + "' id='" + player.name + "'>" 
 	+ "<h1>" + player.name + "</h1>"
 	+ "<h2>" + player.life + "</h2>"
 	+ generateCommanderHTML(player)
@@ -53,7 +51,7 @@ generateCommanderHTML = function(player){
 		for(let key in player.commanderDamages){
 			str.push("<br>", key, ": ", player.commanderDamages[key].toString(10))
 		}
-		str = "Commander" + str.join("");
+		str = "commander" + str.join("");
 	}
 	return str;
 }
@@ -65,11 +63,33 @@ generateCounterHTML = function(player){
 	} else{
 		str = [];
 		for(let key in player.counters){
-			str.push("<br>", key, ": ", player.counters[key].toString(10))
+			if(player.counters[key] !== 0) str.push("<br>", key, ": ", player.counters[key].toString(10));
 		}
-		str = "Counters" + str.join("");
+		if(str.length === 0) return "";
+		str = "counters" + str.join("");
 	}
 	return str;
 }
+
+parseCommand("init andy noe eman 40");
+parseCommand("noe lose 10");
+parseCommand("eman set 10")
+parseCommand("andy to noe 10");
+parseCommand("noe andy lose 10");
+parseCommand("eman gain 10 poison")
+updatePlayers();
+logElement.innerHTML = "Sample commands: <br>\
+		init noe andy eman 40 <br>\
+		^ that's how you start a game. <br>\
+		noe lose 10 <br>\
+		andy gain 5 <br>\
+		eman set 10 <br>\
+		andy to noe 10 <br>\
+		^ that's how you do commander damage. <br>\
+		noe andy lose 10 <br>\
+		^ you can make multiple people lose, gain, or set life totals <br>\
+		eman gain 10 poison <br>\
+		^ and you can get counters too\
+		see eman died";
 
 console.log("loaded scripts");

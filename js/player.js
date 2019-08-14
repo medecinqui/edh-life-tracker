@@ -34,18 +34,30 @@ Player.prototype.counter = function(kind, amount){
 }
 
 // amount: int
-Player.prototype.gain = function(amount){
-	this.life += amount;
+Player.prototype.gain = function(amount, kind=""){
+	if(kind !== ""){
+		this.counter(kind, amount);
+	} else{
+		this.life += amount;
+	}
 }
-Player.prototype.lose = function(amount){
-	this.life -= amount;
+Player.prototype.lose = function(amount, kind=""){
+	if(kind !== ""){
+		this.counter(kind, -amount);
+	} else{
+		this.life -= amount;
+	}
 }
-Player.prototype.set = function(amount){
-	this.life = amount;
+Player.prototype.set = function(amount, kind=""){
+	if(kind !== ""){
+		this.counters[kind] = amount;
+	} else{
+		this.life = amount;
+	}
 }
 
 Player.prototype.checkDead = function(){
-	if(this.life <= 0 || this.mostCommanderDamage >= 21){
+	if(this.life <= 0 || this.mostCommanderDamage >= 21 || this.counters["poison"] >= 10){
 		return true
 	} else return false
 }

@@ -1,8 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca|Open+Sans|Roboto+Mono&display=swap');
+
+body{
+	font-family: "Open Sans", sans-serif;
+	font-size: 1.5em;
+	margin: 0;
+	padding: 0;
+}
+
+input[type="text"]{
+	font-size: 1.4em;
+	font-family: "Roboto Mono", monospace;
+}
+
 #player-container{
-	background-color: yellow;
-	/*margin: -20px;
-	*/
-	padding: 20px;
+	background-color: #458ef5;
+	padding: 10px;
 	display: inline-block;
 }
 
@@ -11,18 +23,20 @@
 	overflow-y: scroll;
 	background-color: #e6e6ff;
 	padding: 20px;
+	margin: 0px;
+	font-family: "Roboto Mono", monospace;
 }
 
 .player{
+	font-family: "Lexend Deca", sans-serif;
 	float: left;
-	min-width: 100px;
-	min-height: 200px;
-	border-style: dotted;
-	border-color: black;
-	margin: 20px;
+	min-width: 120px;
+	min-height: 260px;
+	margin: 10px;
 	background-color: white;
 	text-align: center;
-	padding: 5px;
+	padding: 20px;
+	padding-top: 0px;
 }
 
 .footer{
@@ -30,8 +44,14 @@
 	left: 0;
 	bottom: 0;
 	width: 100%;
+	min-width: 800px;
 	padding: 20px;
 	background-color: #ffe6ff;
 	color: black;
 	text-align: center;
+}
+
+.dead{
+	background-color: #ff6700;
+	color: white;
 }

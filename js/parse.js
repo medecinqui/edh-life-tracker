@@ -15,15 +15,6 @@ parseCommand = function(str){
 	}
 }
 
-/*
-// names: [string], life: int
-function Game(names, life){
-	this.playerList = new PlayerList();
-	for(let name for names){
-		playerList.addPlayer(name, life);
-	}
-} */
-
 // str: [string]
 initializeGame = function(str){
 	// blank out last game's information
@@ -48,23 +39,28 @@ playerAction = function(str){
 		players.findPlayer(str[2]).commanderDamage(str[0], Number(str[3]));
 		return true;
 	}
-	else{
-		if(["lose", "gain", "set"].indexOf(str[1]) > -1){
+	else if(["lose", "gain", "set"].indexOf(str[1]) > -1){
+		if(str.length === 4){
+			let evalStr = "players.findPlayer(str[0])."+str[1]+"("+str[2]+", '"+str[3]+"')";
+			eval(evalStr);
+			console.log(evalStr)
+			return true;
+		} else{
 			let evalStr = "players.findPlayer(str[0])."+str[1]+"("+str[2]+")";
 			eval(evalStr);
 			return true;
-		}else{
-			let partialStr = str.slice(0,str.length-2);
-			let matches = partialStr.map(x => players.playerNames.indexOf(x) > -1);
-			if(matches.every(function(x){return x})){
-				for(let name of partialStr){
-					let evalStr = "players.findPlayer(name)."+str[str.length-2]+"("+str[str.length-1]+")";
-					eval(evalStr);
-				}
-				return true;
-			}
-			return false;
 		}
+	} else{
+		let partialStr = str.slice(0,str.length-2);
+		let matches = partialStr.map(x => players.playerNames.indexOf(x) > -1);
+		if(matches.every(function(x){return x})){
+			for(let name of partialStr){
+				let evalStr = "players.findPlayer(name)."+str[str.length-2]+"("+str[str.length-1]+")";
+				eval(evalStr);
+			}
+			return true;
+		}
+		return false;
 	}
 }
 
@@ -78,6 +74,7 @@ display name + life total + etc
 display misc properties of the table if desired
 text interface
 	parse commands e.g.
+	init noe andy ruben fabian mario darwin eman 40
 	noe lose 10
 	andy gain 5
 	andy set 10
