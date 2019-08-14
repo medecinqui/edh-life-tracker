@@ -1,0 +1,37 @@
+#player-container{
+	background-color: yellow;
+	/*margin: -20px;
+	*/
+	padding: 20px;
+	display: inline-block;
+}
+
+#log{
+	height: 400px;
+	overflow-y: scroll;
+	background-color: #e6e6ff;
+	padding: 20px;
+}
+
+.player{
+	float: left;
+	min-width: 100px;
+	min-height: 200px;
+	border-style: dotted;
+	border-color: black;
+	margin: 20px;
+	background-color: white;
+	text-align: center;
+	padding: 5px;
+}
+
+.footer{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 20px;
+	background-color: #ffe6ff;
+	color: black;
+	text-align: center;
+}
