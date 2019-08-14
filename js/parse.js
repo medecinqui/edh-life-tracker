@@ -43,7 +43,6 @@ playerAction = function(str){
 		if(str.length === 4){
 			let evalStr = "players.findPlayer(str[0])."+str[1]+"("+str[2]+", '"+str[3]+"')";
 			eval(evalStr);
-			console.log(evalStr)
 			return true;
 		} else{
 			let evalStr = "players.findPlayer(str[0])."+str[1]+"("+str[2]+")";
