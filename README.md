@@ -1,6 +1,8 @@
 # edh-life-tracker
 a life tracker for games like magic the gathering (specifically multiplayer elder dragon highlander games)
 
+go to [https://www.crispycrayon.com/edh-life-tracker/](https://www.crispycrayon.com/edh-life-tracker/) to see it in action!
+
 ## usage
 
 * `init <name1> <name2> ... <namen> <life>`
